@@ -1,7 +1,5 @@
 package com.liu.airhockey.util;
 
-import android.nfc.Tag;
-
 import static android.opengl.GLES20.GL_COMPILE_STATUS;
 import static android.opengl.GLES20.GL_FRAGMENT_SHADER;
 import static android.opengl.GLES20.GL_LINK_STATUS;
