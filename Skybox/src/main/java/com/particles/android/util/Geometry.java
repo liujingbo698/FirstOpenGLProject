@@ -46,7 +46,7 @@ public class Geometry {
               + z * z);
         }
 
-        // http://en.wikipedia.org/wiki/Cross_product        
+        // http://en.wikipedia.org/wiki/Cross_product向量叉乘
         public Vector crossProduct(Vector other) {
             return new Vector(
                 (y * other.z) - (z * other.y),
