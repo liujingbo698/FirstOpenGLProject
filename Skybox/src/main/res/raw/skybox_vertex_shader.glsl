@@ -5,7 +5,7 @@ varying vec3 v_Position;
 void main()
 {
     v_Position = a_Position;
-    v_Position.z = -a_Position.z;
+    v_Position.z = -v_Position.z;
 
     gl_Position = u_Matrix * vec4(a_Position, 1.0);
     // 技巧：确保天空盒的每一部分都将位于归一化设备坐标的远平面上以及场景中的其他一切后面

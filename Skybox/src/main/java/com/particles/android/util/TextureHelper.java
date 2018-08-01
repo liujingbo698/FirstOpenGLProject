@@ -122,11 +122,11 @@ public class TextureHelper {
         // 背景图像解码
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inScaled = false;
-        final Bitmap[] cubBitmaps = new Bitmap[6];
+        final Bitmap[] cubeBitmaps = new Bitmap[6];
         for (int i = 0; i < 6; i++) {
-            cubBitmaps[i] = BitmapFactory.decodeResource(context.getResources(), cubeResources[i], options);
+            cubeBitmaps[i] = BitmapFactory.decodeResource(context.getResources(), cubeResources[i], options);
 
-            if (cubBitmaps[i] == null) {
+            if (cubeBitmaps[i] == null) {
                 if (LoggerConfig.ON) {
                     Log.w(TAG, "Resource ID " + cubeResources[i] + " 不能被解码。");
                 }
@@ -141,19 +141,19 @@ public class TextureHelper {
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         // 把每张图与其对应的立方体贴图的面关联起来 左右，下上，前后
-        texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, cubBitmaps[0], 0);
-        texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, cubBitmaps[1], 0);
+        texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, cubeBitmaps[0], 0);
+        texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, cubeBitmaps[1], 0);
 
-        texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, cubBitmaps[2], 0);
-        texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, cubBitmaps[3], 0);
+        texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, cubeBitmaps[2], 0);
+        texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, cubeBitmaps[3], 0);
 
-        texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, cubBitmaps[4], 0);
-        texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, cubBitmaps[5], 0);
+        texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, cubeBitmaps[4], 0);
+        texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, cubeBitmaps[5], 0);
 
         // 解除纹理绑定
         glBindTexture(GL_TEXTURE_2D, 0);
         // 回收位图资源
-        for (Bitmap bitmap : cubBitmaps) {
+        for (Bitmap bitmap : cubeBitmaps) {
             bitmap.recycle();
         }
         return textureObjectIds[0];

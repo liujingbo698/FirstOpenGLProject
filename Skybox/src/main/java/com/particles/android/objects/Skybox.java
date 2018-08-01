@@ -7,6 +7,7 @@ import com.particles.android.programs.SkyboxShaderProgram;
 
 import java.nio.ByteBuffer;
 
+import static android.opengl.GLES20.GL_UNSIGNED_BYTE;
 import static android.opengl.GLES20.glDrawElements;
 
 public class Skybox {
@@ -17,33 +18,38 @@ public class Skybox {
     public Skybox() {
         // 创建一个单元立方体
         vertexArray = new VertexArray(new float[]{
-                -1, 1, 1, // 左 上 近
-                1, 1, 1, // 右 上 近
-                -1, -1, 1, // 左 下 近
-                1, -1, 1, // 右 下 近
-                -1, 1, -1, // 左 上 远
-                1, 1, -1, // 右 上 远
-                -1, -1, -1, // 左 下 远
-                1, -1, -1  // 右 下 远
+                -1,  1,  1,     // (0) Top-left near
+                1,  1,  1,     // (1) Top-right near
+                -1, -1,  1,     // (2) Bottom-left near
+                1, -1,  1,     // (3) Bottom-right near
+                -1,  1, -1,     // (4) Top-left far
+                1,  1, -1,     // (5) Top-right far
+                -1, -1, -1,     // (6) Bottom-left far
+                1, -1, -1      // (7) Bottom-right far
         });
 
         indexArray = ByteBuffer.allocateDirect(6 * 6).put(new byte[]{
-                // 前
+                // Front
                 1, 3, 0,
                 0, 3, 2,
-                // 后
+
+                // Back
                 4, 6, 5,
                 5, 6, 7,
-                // 左
+
+                // Left
                 0, 2, 4,
                 4, 2, 6,
-                // 右
+
+                // Right
                 5, 7, 1,
                 1, 7, 3,
-                // 上
+
+                // Top
                 5, 1, 4,
                 4, 1, 0,
-                // 下
+
+                // Bottom
                 6, 2, 7,
                 7, 2, 3
         });
@@ -59,6 +65,6 @@ public class Skybox {
     }
 
     public void draw() {
-        glDrawElements(GLES20.GL_TRIANGLES, 36, GLES20.GL_UNSIGNED_BYTE, indexArray);
+        glDrawElements(GLES20.GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, indexArray);
     }
 }
